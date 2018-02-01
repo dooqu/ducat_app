@@ -1,0 +1,36 @@
+<view class="grid_title">
+  <view class="title">收益提现</view>
+  <view class="content"></view>
+</view>
+<view class="grid">
+  <view class="title">历史收益</view>
+  <view class="content">{{incomeTotal}}元</view>
+</view>
+<view class="grid" >
+  <view class="title">已经提现</view>
+  <view class="content">{{cashMoneyTotal}}元</view>
+</view>
+
+<view class="grid" >
+  <view class="title">提现受理中</view>
+  <view class="content">{{cashMoneyTotalPending}}元</view>
+</view>
+<view class="grid_last underline" style="margin-bottom:30rpx;">
+  <view class="title">收益余额</view>
+  <view class="content">{{cashMoneyLeft}}元</view>
+</view>
+
+<view class="grid_title">提现操作</view>
+<view class="grid">
+  <view class="title">提现金额</view>
+  <view class="content"><input id="moneyInput" type="number" style="background-color:#efefef" placeholder='请输入提现金额' confirm-type='done' bindinput='input_handle' bindblur='input_handle'/></view>
+</view>
+<view class="grid">
+  <view class="title">收款账号</view>
+  <view class="content"><input id="wechatIdInput" type="text" style="background-color:#efefef" placeholder='请输入收款微信号' value="{{wechatId}}" confirm-type='done'  bindinput='input_handle' bindblur='input_handle'/></view>
+</view>
+<view class="grid_last underline" style="margin-bottom:30rpx">
+  <view class="title">联系电话</view>
+  <view class="content"><input id="mobileInput" type="text" style="background-color:#efefef" placeholder='请输入联系人联系电话' value="{{mobile}}" confirm-type='done'  bindinput='input_handle' bindblur='input_handle'/></view>
+</view>
+<button type="primary" size="default" style="margin:0rpx 30rpx" bindtap="newCash" disabled="{{cashMoneyLeft < 0}}">提现</button>

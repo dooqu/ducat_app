@@ -1,0 +1,5 @@
+/* pages/user_policies/user_policies.wxss */
+page
+{
+  background-color:#efefef;
+}

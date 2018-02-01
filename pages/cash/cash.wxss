@@ -1,0 +1,5 @@
+/* pages/cash/cash.wxss */
+page
+{
+  background-color:#efefef;
+}

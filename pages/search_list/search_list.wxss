@@ -1,0 +1,22 @@
+.block, .block_hover
+{
+  width:auto;
+  height:150rpx;
+  display:flex;
+  flex-direction:row;
+  position:relative;
+  padding:0rpx 30rpx;
+  margin:30rpx 0rpx;
+  background-color:#fff;
+}
+
+.block_hover
+{
+  background-color:#efefef;
+}
+
+
+page
+{
+  background-color:#efefef;
+}

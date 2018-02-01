@@ -1,0 +1,5 @@
+/* pages/protocol1/protocol1.wxss */
+.p
+{
+  font-size:12pt;text-indent:24pt;line-height:14pt;margin:30rpx;
+}

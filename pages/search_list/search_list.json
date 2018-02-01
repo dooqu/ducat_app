@@ -1,0 +1,9 @@
+{
+  "windows": {
+    "backgroundColor": "#000000",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "我的所有注册",
+    "navigationBarTextStyle": "#fff"
+  }
+}

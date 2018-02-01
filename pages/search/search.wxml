@@ -1,0 +1,145 @@
+<view id="reg1Banner">
+</view>
+<!-- 第一个问题 -->
+<view hidden="{{qstatus[0]}}">
+  <view id="msg" class="q">（1/6）请选择在美国注册公司的州地址</view>
+  <!--
+<picker bindchange="q0_selected" value="{{regAddrIndex}}" range="{{regAddrList}}">
+<view id="purposeView" class="selectRow" hover-class="selectRowFocus">
+  <view class="selectColumn">
+    <block wx:if="{{regAddrIndex < 0}}">
+      请选择公司注册地
+    </block>
+    <block wx:else>
+      公司注册地：<text>{{regAddrList[regAddrIndex]}}</text>
+    </block>
+  </view>
+  <view class="arrowColumn">▼</view>
+</view>
+</picker> 
+-->
+  <block wx:for="{{q0_options}}" wx:key="q0">
+    <view data-index="{{index}}" class="{{(index == q0_selected_index)? 'as_selected' : 'as' }}" hover-class="as-hover" bindtap="q0_selected"> <radio checked="{{(index == q0_selected_index)}}"/> {{item}}</view>
+  </block>
+</view>
+
+<!-- 第二个问题 -->
+<view hidden="{{qstatus[1]}}">
+  <view class="q">（2/6）请确认公司注册人的身份</view>
+  <block wx:for="{{q1_options}}" wx:key="q1">
+    <view data-index="{{item.idx}}" wx:if="{{item.title != ''}}" class="{{(item.idx == q1_selected_index)? 'as_selected' : 'as' }}" hover-class="as-hover" bindtap="q1_selected"><radio checked="{{(item.idx == q1_selected_index)}}"/> {{item.title}}</view>
+  </block>
+</view>
+
+<!-- 第三个问题 -->
+<view hidden="{{qstatus[2]}}">
+  <view class="q">（3/6）请选择公司的用途</view>
+  <block wx:for="{{q2_options}}" wx:key="q2">
+    <view data-index="{{item.idx}}" wx:if="{{item.title != ''}}" class="{{(item.idx == q2_selected_index)? 'as_selected' : 'as' }}" hover-class="as-hover" bindtap="q2_selected"><radio checked="{{(item.idx == q2_selected_index)}}"/> {{item.title}}</view>
+  </block>
+</view>
+
+<!-- 第四个问题 -->
+<view hidden="{{qstatus[3]}}">
+  <view class="q">（4/6）请确认是否有SSN/ITIN</view>
+  <block wx:for="{{q3_options}}" wx:key="q3">
+    <view data-index="{{item.idx}}" wx:if="{{item.title != ''}}" class="{{(item.idx == q3_selected_index)? 'as_selected' : 'as' }}" hover-class="as-hover" bindtap="q3_selected"><radio checked="{{(item.idx == q3_selected_index)}}"/> {{item.title}}</view>
+  </block>
+</view>
+
+<!-- 第五个问题 -->
+<view hidden="{{qstatus[4]}}">
+  <view class="q">（5/6）请确认是否会增加投资人</view>
+  <block wx:for="{{q4_options}}" wx:key="q4">
+    <view data-index="{{item.idx}}" class="{{(item.idx == q4_selected_index)? 'as_selected' : 'as' }}" hover-class="as-hover" bindtap="q4_selected"><radio checked="{{(item.idx == q4_selected_index)}}"/> {{item.title}}</view>
+  </block>
+</view>
+
+<!-- 第六个问题 -->
+<view hidden="{{qstatus[5]}}">
+  <view class="q">（6/6）请确认公司会承担怎样的责任</view> 
+  <block wx:for="{{q5_options}}" wx:key="q5">
+    <view data-index="{{item.idx}}" class="{{(item.idx == q5_selected_index)? 'as_selected' : 'as' }}" hover-class="as-hover" bindtap="q5_selected"><radio checked="{{(item.idx == q5_selected_index)}}"/> {{item.title}}</view>
+  </block>
+</view>
+
+<!-- 第七个问题 -->
+<view hidden="{{qstatus[6]}}">
+  <view class="q">共有<view class="dotnumber">{{q6_options.length}}</view>种公司注册类型可供选择：</view>
+  <block wx:for="{{q6_options}}" wx:key="q6">
+    <view data-sid="{{item.sid}}" data-index="{{index}}" class="{{(item.idx == q6_selected_index)? 'as_selected' : 'as' }}" hover-class="as-hover" style='background-color:rgb(255,165,104)' bindtap="q6_selected">
+      <view class="asl"><radio check="{(item.idx == q6_selected_index)}}"/> 注册类型：</view>
+      <view class="asr">{{item.title}} <image mode='widthFix' src="/imgs/arr.png" style="width:15rpx"/></view>
+    </view>
+    
+    <view class="grid">
+      <view class="title">注册地区：</view>
+      <view class="content">{{item.addr}}</view>
+    </view>
+    <view class="grid">
+      <view class="title">基本费用：</view>
+      <view class="content">{{item.baseCost}} 元</view>
+    </view>
+    <view class="grid">
+      <view class="title">政府费用：</view>
+      <view class="content">{{item.govCost}} 元</view>
+    </view>
+    <view class="grid" hidden="{{item.spcDays == 0}}">
+      <view class="title">加急费用：</view>
+      <view class="content">{{item.spcCost}} 元</view>
+    </view>
+    <view class="grid">
+      <view class="title">申请耗时：</view>
+      <view class="content">{{item.isSpc? item.spcDays : item.days}} 天</view>
+    </view>
+    <view class="grid" hidden="{{item.spcDays == 0}}">
+      <view class="title">是否加急：</view>
+      <view class="content">
+        <switch checked="{{item.isSpc}}" data-index="{{index}}" bindchange="setSoluSpecial" />
+      </view>
+    </view>
+    <view class="grid">
+      <view class="title">总费用:</view>
+      <view class="content">{{item.baseCost + item.govCost + ((item.isSpc)? item.spcCost : 0)}} 元</view>     
+    </view>
+    <view class="grid" style="height:auto;padding-top:15rpx;padding-bottom:15rpx">
+    费用备注:{{item.comment}}
+    </view>
+  </block>
+</view>
+
+<view hidden="{{qstatus[7]}}">
+  <view class="q">确认您的搜索信息方案</view>
+  <view class="as">
+    <view class="asl">类型：</view>
+    <view class="asr">{{q7_option.title}}</view>
+  </view>
+  <view class="as">
+    <view class="asl">注册地区：</view>
+    <view class="asr">{{q7_option.addr}}</view>
+  </view>
+  <view class="as">
+    <view class="asl">是否加急：</view>
+    <view class="asr">{{(q7_option.isSpc)? "加急" : "不加急"}}</view>
+  </view>
+  <view class="as">
+    <view class="asl">申请耗时：</view>
+    <view class="asr">{{q7_option.isSpc? q7_option.spcDays : q7_option.days}} 天</view>
+  </view>
+  <view class="as">
+    <view class="asl">总费用:</view>
+    <view class="asr">{{q7_option.price}} 元     </view>
+  </view>
+  <view class="grid" style="height:auto;min-height:90rpx;background-color:rgb(255,181,132)" hidden="{{q7_option.comment == ''}}">
+    {{q7_option.comment}} 
+    </view>
+</view>
+
+
+<!-- 底部占位 -->
+<view style="height:80rpx"></view>
+<!-- 底部banner -->
+<view id="bannerBottomView" class="bottomBanner">
+  <view style="flex-grow:1;border-right:1px solid white;" bindtap="button1Evt">{{firstButtonText}}</view>
+  <view style="flex-grow:1;" bindtap="checkInput"  bindtap="button2Evt">{{buttonText}}</view>
+</view>

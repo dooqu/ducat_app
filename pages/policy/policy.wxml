@@ -1,0 +1,20 @@
+<view class="grid_title" bindtap='goPolicies'>
+  <view class="title">全部优惠政策</view>
+  <view class="content"><image mode='widthFix' src="/imgs/arr.png" style="width:15rpx"/></view>
+</view>
+<view class="grid_title" bindtap='myPolicies'>
+  <view class="title">我的优惠码</view>
+  <view class="content"><image mode='widthFix' src="/imgs/arr.png" style="width:15rpx"/></view>
+</view>
+<view class="grid_title" bindtap='myIncome'>
+  <view class="title">我的收益记录</view>
+  <view class="content"><image mode='widthFix' src="/imgs/arr.png" style="width:15rpx"/></view>
+</view>
+<view class="grid_title" bindtap='myCash'>
+  <view class="title">我的提现记录</view>
+  <view class="content"><image mode='widthFix' src="/imgs/arr.png" style="width:15rpx"/></view>
+</view>
+<view class="grid_title" bindtap='cashApply'>
+  <view class="title">申请提现</view>
+  <view class="content"><image mode='widthFix' src="/imgs/arr.png" style="width:15rpx"/></view>
+</view>

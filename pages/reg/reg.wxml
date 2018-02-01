@@ -1,0 +1,352 @@
+<view class="grid_title">{{(currInputGroupIndex == 0)? "请填写联系人信息" : ((currInputGroupIndex == 1)? "请填写注册公司信息" : ((currInputGroupIndex == 2)? "请填写股东或成员信息" : "请确认付费信息"))}}</view>
+
+<!-- 第一题 -->
+<view hidden="{{inputGroupStatus[0]}}">
+  <view id="nameView" class="doubleRow">
+    <view class="title">
+      姓名:
+    </view>
+    <view class="content">
+      <input id="nameInput" type="text" confirm-type="next" focus='{{linkmanFocus_name}}' bindinput="inputHandle" bindblur="inputHandle" bindconfirm="confirmHandle" placeholder="输入业务联系人的姓名" placeholder-style='font-size:13pt;color:#c0c0c0'
+      />
+    </view>
+  </view>
+
+  <view id="teleView" class="doubleRow">
+    <view class="title">
+      电话:
+    </view>
+    <view class="content">
+      <input id="teleInput" type="number" confirm-type="next" focus="{{linkmanFocus_tele}}" bindinput="inputHandle" bindblur="inputHandle" bindconfirm="confirmHandle" placeholder='输入联系人的电话号码' placeholder-style='font-size:13pt;color:#c0c0c0'
+      />
+    </view>
+  </view>
+
+  <view id="emailView" class="doubleRow">
+    <view class="title">
+      邮箱:
+    </view>
+    <view class="content">
+      <input id="emailInput" type="text" confirm-type="next" focus="{{linkmanFocus_email}}" bindinput="inputHandle" bindblur="inputHandle" bindconfirm="confirmHandle" placeholder='输入联系的电子邮箱' placeholder-style='font-size:13pt;color:#c0c0c0'
+      />
+    </view>
+  </view>
+
+  <view id="addrView" class="doubleRow">
+    <view class="title">
+      地址:
+    </view>
+    <view class="content">
+      <input id="addrInput" type="text" confirm-type="next" focus="{{linkmanFocus_addr}}" bindinput="inputHandle" bindblur="inputHandle" bindconfirm="confirmHandle" placeholder='输入联系人的联系地址' placeholder-style='font-size:13pt;color:#c0c0c0'
+      />
+    </view>
+  </view>
+
+  <view id="wechatView" class="doubleRow">
+    <view class="title">
+      微信号:
+    </view>
+    <view class="content">
+      <input id="wechatInput" type="text" confirm-type="done" focus="{{linkmanFocus_wechat}}" bindinput="inputHandle" bindblur="inputHandle" bindconfirm="confirmHandle" placeholder='输入联系人的微信号' placeholder-style='font-size:13pt;color:#c0c0c0'
+      />
+    </view>
+  </view>
+</view>
+
+<!-- 第二题 -->
+<view hidden="{{inputGroupStatus[1]}}">
+  <view id="comp_name1View" class="doubleRow">
+    <view class="title">
+      公司名1:
+    </view>
+    <view class="content">
+      <input id="comp_name1Input" type="text" confirm-type="next" focus='{{compFocus_name1}}' bindinput="inputHandle" bindblur="inputHandle" bindconfirm="confirmHandle" placeholder='输入首先尝试注册的公司名' placeholder-style='font-size:13pt;color:#c0c0c0'
+      />
+    </view>
+  </view>
+
+  <view id="comp_name2View" class="doubleRow">
+    <view class="title">
+      公司名2:
+    </view>
+    <view class="content">
+      <input id="comp_name2Input" type="text" confirm-type="next" focus="{{compFocus_name2}}" bindinput="inputHandle" bindblur="inputHandle" bindconfirm="confirmHandle" placeholder='输入次要尝试注册的公司名' placeholder-style='font-size:13pt;color:#c0c0c0'
+      />
+    </view>
+  </view>
+
+  <view id="comp_name3View" class="doubleRow">
+    <view class="title">
+      公司名3:
+    </view>
+    <view class="content">
+      <input id="comp_name3Input" type="text" confirm-type="next" focus="{{compFocus_name3}}" bindinput="inputHandle"  bindblur="inputHandle" bindconfirm="confirmHandle" placeholder='输入最后尝试注册的公司名' placeholder-style='font-size:13pt;color:#c0c0c0'
+      />
+    </view>
+  </view>
+
+  <view id="comp_addrView" class="doubleRow">
+    <view class="title">
+      注册地址:
+    </view>
+    <view class="content">
+      <input id="comp_addrInput" type="text" confirm-type="next" focus="{{compFocus_addr}}" bindinput="inputHandle" bindblur="inputHandle" bindconfirm="confirmHandle" placeholder='输入公司的注册地址' placeholder-style='font-size:13pt;color:#c0c0c0'
+      />
+    </view>
+  </view>
+
+  <view id="comp_propView" class="doubleRow">
+    <view class="title">
+      公司营业项目:
+    </view>
+    <view class="content">
+      <input id="comp_propInput" type="text" confirm-type="done" focus="{{compFocus_prop}}" bindinput="inputHandle"  bindblur="inputHandle" bindconfirm="confirmHandle" placeholder='输入公司的营业项目' placeholder-style='font-size:13pt;color:#c0c0c0'
+      />
+    </view>
+  </view>
+</view>
+
+<!-- 第三题 -->
+<view hidden="{{inputGroupStatus[2]}}">
+  <view id="stockCountView" class="doubleRow"  hidden="{{(solution == 'FNC' || solution == 'DNC' || solution == 'LLC' || solution == 'DLLC')}}">
+    <view class="title">
+      发行股票数:
+    </view>
+    <view class="content">
+      <input id="stockCountInput" type="number" confirm-type="next" focus='{{stockCountFocus}}' bindinput="inputHandle"  bindblur="inputHandle" bindconfirm="confirmHandle" placeholder-style='font-size:13pt;color:#c0c0c0' />
+    </view>
+  </view>
+
+  <view id="stockHolderView" class="doubleRow">
+    <view class="title">
+      添加{{memberText}}：
+    </view>
+    <view class="content">
+      <view style="width:0rpx;display:flex;flex-direction:row;flex-grow:5; flex-wrap:wrap;height:auto;min-height:70rpx" bindtap="showStockHolderDialog">
+        <block wx:for="{{stockHolders}}" wx:key="holders">
+          <view class="key">{{item}}</view>
+        </block>
+      </view>
+      <view style="width:0rpx;flex-grow:1;justify-content:right;display:flex;flex-direction:row;">
+        <view class="circle_button" style="color:red;border:1px solid red" bindtap="delStockHolder">－</view>
+        <view class="circle_button" style="color:green;border:1px solid green" bindtap="showStockHolderDialog">＋</view>
+      </view>
+    </view>
+  </view>
+
+  <view id="ceoNameView" class="doubleRow">
+    <view class="title">
+      {{leaderText}}姓名：
+    </view>
+    <view class="content">
+      <input id="ceoNameInput" type="text" confirm-type="next" focus="{{ceoNameFocus}}" bindinput="inputHandle"  bindblur="inputHandle" bindconfirm="confirmHandle" placeholder='{{leaderPlaceHolderText}}' placeholder-style='font-size:13pt;color:#c0c0c0'
+      />
+    </view>
+  </view>
+
+  <view id="cfoNameView" class="doubleRow"  hidden="{{solution == 'LLC' || solution == 'DLLC'}}">
+    <view class="title">
+      CFO姓名:
+    </view>
+    <view class="content">
+      <input id="cfoNameInput" type="text" confirm-type="next" focus="{{cfoNameFocus}}" bindinput="inputHandle" bindblur="inputHandle" bindconfirm="confirmHandle" placeholder='请填写CFO姓名' placeholder-style='font-size:13pt;color:#c0c0c0'
+      />
+    </view>
+  </view>
+
+  <view id="secretorView" class="doubleRow" hidden="{{solution == 'LLC' || solution == 'DLLC'}}">
+    <view class="title">
+      秘书长姓名:
+    </view>
+    <view class="content">
+      <input id="secretorInput" type="text" confirm-type="done" focus="{{secretorFocus}}" bindinput="inputHandle" bindblur="inputHandle" bindconfirm="confirmHandle" placeholder='请填写秘书长姓名' placeholder-style='font-size:13pt;;color:#c0c0c0'
+      />
+    </view>
+  </view>
+</view>
+
+<!-- 最后确认页面 -->
+<view hidden="{{inputGroupStatus[3]}}">
+
+  <view class="grid_title">基础查询信息确认</view>
+  <view class="grid">
+    <view class="title">公司注册地</view>
+    <view class="content">{{regArea}} ({{regAreaEN}})</view>
+  </view>
+  <view class="grid">
+    <view class="title">公司类型</view>
+    <view class="content">{{solution}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">基础收费</view>
+    <view class="content">{{basePrice}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">政府收费</view>
+    <view class="content">{{govPrice}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">加急费用</view>
+    <view class="content">{{spcPrice}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">是否加急</view>
+    <view class="content">{{isSpc? "加急" : "不加急"}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">总费用</view>
+    <view class="content"><view class="number2">{{basePrice + govPrice + (isSpc? spcPrice : 0)}}</view></view>
+  </view>
+
+  <view class="grid_title">注册信息详细确认</view>
+  <view class="grid">
+    <view class="title">联系人姓名：</view>
+    <view class="content">{{linkman_name}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">联系人电话：</view>
+    <view class="content">{{linkman_tele}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">联系人邮箱：</view>
+    <view class="content">{{linkman_email}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">联系人地址：</view>
+    <view class="content">{{linkman_addr}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">联系人微信：</view>
+    <view class="content">{{linkman_wechat}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">注册公司名1：</view>
+    <view class="content">{{comp_name1}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">注册公司名2：</view>
+    <view class="content">{{comp_name2}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">注册公司名3：</view>
+    <view class="content">{{comp_name3}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">注册公司地址：</view>
+    <view class="content">{{comp_addr}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">注册公司用途：</view>
+    <view class="content">{{comp_prop}}</view>
+  </view>
+
+  <view class="grid" hidden="{{(solution == 'FNC' || solution == 'DNC' || solution == 'LLC' || solution == 'DLLC')}}">
+    <view class="title">股票数:</view>
+    <view class="content">{{stockCount}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">{{memberText}}姓名:</view>
+    <view class="content">{{stockHolders}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">{{leaderText}}姓名:</view>
+    <view class="content">{{ceoName}}</view>
+  </view>
+  <view class="grid" hidden="{{solution == 'LLC' || solution == 'DLLC'}}">
+    <view class="title">cfo:</view>
+    <view class="content">{{cfoName}}</view>
+  </view>
+  <view class="grid" hidden="{{solution == 'LLC' || solution == 'DLLC'}}">
+    <view class="title">秘书长:</view>
+    <view class="content">{{secretor}}</view>
+  </view>
+
+  <view class="grid_title">
+    <view class="title">
+      <input type="text" confirm-type='done' placeholder="输入推广码" style="background-color:#fff" bindinput='checkCodeHandle' bindblur='checkCodeHandle' bindconfirm='checkCodeHandle' />
+    </view>
+    <view class="content">
+      <button size="mini" type="primary" bindtap='searchPolicy'>查询推广码</button>
+    </view>
+  </view>
+  <view class="grid" wx:if="{{policy != null}}">
+    <view class="title">优惠活动</view>
+    <view class="content">{{policy.Title}}</view>
+  </view>
+  <view class="grid" wx:if="{{policy != null}}">
+    <view class="title">优惠规则</view>
+    <view class="content">{{policy.Rule}}</view>
+  </view>
+  <view class="grid" wx:if="{{policy != null}}">
+    <view class="title">优惠幅度</view>
+    <view class="content">基础费用-{{policy.DisMoney}}{{policy.IsDisPercent? "%" : "元"}}</view>
+  </view>
+  <view class="grid" wx:if="{{policy != null}}">
+    <view class="title">有效时段</view>
+    <view class="content">{{policy.StartDate}} 至 {{policy.EndDate}}</view>
+  </view>
+  <view class="grid" wx:if="{{policy != null}}">
+    <view class="title">是否使用</view>
+    <view class="content"><switch checked='true' bindchange='usePolicyChanged'></switch></view>
+  </view>
+
+  <!-- 条款部分 -->
+  <checkbox-group bindchange="checkboxchanged">
+    <view>
+      <label>
+        <checkbox value="agree1" checked="{{agree1}}" style="margin:30rpx" /> 我同意服务协议
+      </label>
+      <label bindtap='goAgree1' style="color:blue"> 查看协议</label>
+    </view>
+    <view>
+      <label>
+        <checkbox value="agree2" checked="{{agree2}}" style="margin:30rpx" /> 我同意保密协议
+      </label>
+      <label bindtap='goAgree2' style="color:blue">查看协议</label>
+    </view>
+  </checkbox-group>
+
+  <!-- 签名部分 -->
+  <view style="height:auto;margin:30rpx;font-size:13pt">请在下方白板签入您的电子签名</view>
+  <canvas style="width:auto;margin:40rpx;height:300rpx;border:1px solid rgb(98, 98, 98)" canvas-id="sign_name" disable-scroll="true" bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="touchend" bindtouchcancel="touchend">
+  </canvas>
+  <view style="display:flex;flex-direction:row;width:auto;margin:40rpx">
+    <view style="width:0px;flex-grow:1;">
+      <button type="warn" bindtap="clearCanvas">重签</button>
+    </view>
+  </view>
+  <view style="display:flex;flex-direction:row;width:auto;margin:40rpx">
+    <view style="width:0px;flex-grow:1;">
+      <button type="primary" bindtap="buttonTap1">保存注册</button>
+    </view>
+  </view>
+  <view style="display:flex;flex-direction:row;width:auto;margin:40rpx">
+    <view style="width:0px;flex-grow:1;">
+      <button type="primary" bindtap="buttonTap2">付费(￥ {{basePrice + govPrice + (isSpc? spcPrice : 0) - disMoney}})</button>
+    </view>
+  </view>
+  <!-- 签名结束 -->
+</view>
+<view style="height:100rpx">
+</view>
+
+<!--增加成员或者股东的菜单-->
+<view style="position:absolute;z-index:99;top:0px;left:0px;right:0px;bottom:0px;background-color:white" hidden='{{!showStockInput}}'>
+  <view class="doubleRow">
+    <view class="title">{{memberText}}姓名:</view>
+    <view class="content">
+      <input id="newStockHolderInput" type="text" focus="{{stockHolderFocus}}" confirm-type='done' bindinput="inputHandle"   bindblur="inputHandle" bindconfirm="confirmHandle" value="{{newStockHolder}}" placeholder='请输入一位{{memberText}}的名字'
+        placeholder-style='font-size:13pt;;color:#c0c0c0' />
+    </view>
+  </view>
+  <view>
+    <button type="primary" size="default" style="width:auto;margin:30rpx" bindtap="addStockHolderHandle">添加</button>
+    <button type="warn" size="default" style="width:auto;margin:30rpx" bindtap="hiddenAddStockHolder">取消</button>
+  </view>
+</view>
+
+
+<view id="bannerBottomView" style="display:flex;position:fixed;bottom:0px;left:0px;width:100%;background-color:rgb(194,59,63);height:90rpx;align-items:center;color:white" wx:if="{{currInputGroupIndex !=3 }}">
+  <view style="flex-grow:1;border-right:1px solid white;text-align:center" bindtap="buttonTap1">{{(currInputGroupIndex == 3)? "保存注册" : ((currInputGroupIndex == 0)? "取消注册" : "上一步")}}</view>
+  <view style="flex-grow:1;text-align:center" bindtap="buttonTap2">{{(currInputGroupIndex == 3)? ("付费(￥" + ((basePrice + govPrice + (isSpc? spcPrice : 0)) - disMoney) + ")") : "下一步"}}</view>
+</view>

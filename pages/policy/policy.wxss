@@ -1,0 +1,9 @@
+page
+{
+  background-color:#efefef;
+}
+
+.arr
+{
+  background-image:url(/imgs/arr.png);background-repeat:no-repeat;background-position:98% center;background-size:18rpx auto;
+}

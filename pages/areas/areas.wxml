@@ -1,0 +1,8 @@
+<view class="grid_title">该优惠活动覆盖的州</view>
+
+<block wx:for="{{cover_areas}}">
+<view class="grid">
+  <view class="title">{{item.AreaName}}({{item.AreaNameEN}})</view>
+  <view class="content"></view>
+</view>
+</block>

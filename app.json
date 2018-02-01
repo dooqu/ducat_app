@@ -1,0 +1,28 @@
+{
+  "pages": [
+        "pages/index/index",
+    "pages/protocol2/protocol2",
+    "pages/protocol1/protocol1",
+
+    
+    "pages/reg/reg",
+    "pages/policy/policy",
+    "pages/reg_list/reg_list",
+    "pages/search_list/search_list",
+    "pages/reg_detail/reg_detail",
+    "pages/search_detail/search_detail",
+    "pages/search/search",
+    "pages/policies/policies",
+    "pages/user_policies/user_policies",
+    "pages/areas/areas",
+    "pages/income/income",
+    "pages/cash/cash",
+    "pages/cash_apply/cash_apply"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "杜凯特海外公司注册自助平台",
+    "navigationBarTextStyle": "#fff"
+  }
+}

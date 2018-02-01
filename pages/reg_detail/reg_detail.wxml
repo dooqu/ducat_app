@@ -1,0 +1,170 @@
+<view>
+  <view class="grid_title">查询方案详细信息</view>
+  <view class="grid">
+    <view class="title">注册州区：</view>
+    <view class="content">{{ri.AreaName}} ({{ri.AreaNameEN}})</view>
+  </view>
+  <view class="grid">
+    <view class="title">公司类型：</view>
+    <view class="content">{{compType}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">注册周期：</view>
+    <view class="content">{{ri.IsSpc? ri.SpcDays : ri.Days}} （工作日）</view>
+  </view>
+  <view class="grid" hidden="{{ri.IsPayed}}">
+    <view class="title">基础费用：</view>
+    <view class="content">￥{{ri.BasePrice}}</view>
+  </view>
+  <view class="grid"  hidden="{{ri.IsPayed}}">
+    <view class="title">政府费用：</view>
+    <view class="content">￥{{ri.GovPrice}}</view>
+  </view>
+  <view class="grid" wx:if="{{(ri.IsSpc)}}" hidden="{{ri.IsPayed}}">
+    <view class="title">加急费用：</view>
+    <view class="content">￥{{ri.SpcPrice}}</view>
+  </view>
+  <view class="{{ri.IsPayed? 'grid_last underline' : 'grid'}}">
+    <view class="title">是否加急：</view>
+    <view class="content">{{(ri.IsSpc)? "加急" : "不加急"}}</view>
+  </view>
+  <view class="grid_last underline"  hidden="{{ri.IsPayed}}">
+    <view class="title">费用总计：</view>
+    <view class="content">
+      <view class="number2">￥{{ri.BasePrice + ri.GovPrice + ((ri.IsSpc)? ri.SpcPrice : 0)}}</view>
+    </view>
+  </view>
+
+  <view class="grid_title">注册详细信息</view>
+  <view class="grid">
+    <view class="title">联系人姓名：</view>
+    <view class="content">{{ri.LinkmanName}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">联系人电话：</view>
+    <view class="content">{{ri.LinkmanTel}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">联系人Email：</view>
+    <view class="content">{{ri.LinkmanEmail}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">联系人地址：</view>
+    <view class="content">{{ri.LinkmanAddr}}</view>
+  </view>
+  <view class="grid_last underline">
+    <view class="title">联系人微信：</view>
+    <view class="content">{{ri.LinkmanWechat}}</view>
+  </view>
+  <view class="grid_title">公司注册信息</view>
+  <view class="grid">
+    <view class="title">公司注册名1：</view>
+    <view class="content">{{ri.CompName1}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">公司注册名2：</view>
+    <view class="content">{{ri.CompName1}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">公司注册名3：</view>
+    <view class="content">{{ri.CompName1}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">公司注册地址：</view>
+    <view class="content">{{ri.CompRegAddr}}</view>
+  </view>
+  <view class="grid_last">
+    <view class="title">公司营业项目</view>
+    <view class="content">{{ri.CompProp}}</view>
+  </view>
+  <view class="grid_title">公司资本信息</view>
+  <view class="grid" hidden="{{((compType == 'FNC' || compType == 'DNC' || compType == 'LLC' || compType == 'DLLC')? true : false)}}">
+    <view class="title">发行股票数：</view>
+    <view class="content">{{ri.StockCount}}股</view>
+  </view>
+  <view class="grid">
+    <view class="title">公司{{(compType == 'LLC' || compType == 'DLLC')? '成员' : '股东'}}：</view>
+    <view class="content">{{ri.StockHolder}}</view>
+  </view>
+  <view class='{{((compType == "LLC" || compType == "DLLC")? "grid_last" : "grid")}}'>
+    <view class="title">公司{{((compType == "LLC" || compType == "DLLC")?"经理" : "CEO")}}：</view>
+    <view class="content">{{ri.CEOName}}</view>
+  </view>
+  <view class="grid" hidden="{{((compType == 'LLC' || compType == 'DLLC')? true : false)}}">
+    <view class="title">CFO姓名：</view>
+    <view class="content">{{ri.CFOName}}</view>
+  </view>
+  <view class="grid_last" hidden="{{((compType == 'LLC' || compType == 'DLLC')? true : false)}}">
+    <view class="title">秘书长姓名：</view>
+    <view class="content">{{ri.Secretor}}</view>
+  </view>
+  <view class="grid_title">用户签名图像</view>
+  <view class="grid_last" style="height:380rpx">
+    <image src="http://xiaochengxu.ducat.vip/sign/{{ri.SignFile}}" mode="widthFix" style="border:0px solid #c0c0c0;width:100%"></image>
+  </view>
+  <!--推广码部分 -->
+  <view class="grid_title" wx:if="{{!ri.IsPayed}}">
+    <view class="title">
+      <input type="text" confirm-type='done' placeholder="输入推广码" style="background-color:#fff" bindinput='checkCodeHandle' bindblur='checkCodeHandle' bindconfirm='checkCodeHandle' />
+    </view>
+    <view class="content">
+      <button size="mini" type="primary" bindtap='searchPolicy'>查询推广码</button>
+    </view>
+  </view>
+  <view class="grid" wx:if="{{policy != null}}">
+    <view class="title">优惠活动</view>
+    <view class="content">{{policy.Title}}</view>
+  </view>
+  <view class="grid" wx:if="{{policy != null}}">
+    <view class="title">优惠规则</view>
+    <view class="content">{{policy.Rule}}</view>
+  </view>
+  <view class="grid" wx:if="{{policy != null}}">
+    <view class="title">优惠幅度</view>
+    <view class="content">基础费用-{{policy.DisMoney}}{{policy.IsDisPercent? "%" : "元"}}</view>
+  </view>
+  <view class="grid" wx:if="{{policy != null}}">
+    <view class="title">有效时段</view>
+    <view class="content">{{policy.StartDate}} 至 {{policy.EndDate}}</view>
+  </view>
+  <view class="grid" wx:if="{{policy != null}}">
+    <view class="title">是否使用</view>
+    <view class="content">
+      <switch checked='true' bindchange='usePolicyChanged'></switch>
+    </view>
+  </view>
+  <!-- -->
+  <view hidden = "{{ri.IsPayed}}">
+    <button type="primary" size="default" style="width:auto;margin:30rpx" bindtap="goPay" disabled="{{ri.IsPayed}}">{{((ri.IsPayed)? "已经付费" : "我要付费")}} (￥{{ri.BasePrice + ri.GovPrice + ((ri.IsSpc)? ri.SpcPrice : 0) - disMoney}})</button>
+
+    <button type="warn" size="default" style="width:auto;margin:30rpx" hidden="{{ri.IsPayed}}" bindtap="delReg">{{delButtonText}}</button>
+  </view>
+</view>
+
+<view hidden="{{order == null}}">
+  <view class="grid_title">付费详情</view>
+  <view class="grid">
+    <view class="title">基础费用</view>
+    <view class="content">{{order.BaseMoney}}元</view>
+  </view>
+    <view class="grid">
+    <view class="title">政府费用</view>
+    <view class="content">{{order.GovMoney}}元</view>
+  </view>
+    <view class="grid" hidden="{{order.IsSpc == false}}">
+    <view class="title">加急费用</view>
+    <view class="content">{{order.SpcMoney}}元</view>
+  </view>
+  <view class="grid" hidden="{{order.UPId == 0}}">
+    <view class="title">折扣价格</view>
+    <view class="content">-{{order.OrderDisMoney}}元</view>
+  </view>
+  <view class="grid">
+    <view class="title">实付总计</view>
+    <view class="content">{{order.BaseMoney + order.GovMoney+ (order.IsSpc? order.SpcMoney : 0) - (order.OrderDisMoney)}}元</view>
+  </view>
+  <view class="grid_last underline" style="margin-bottom:30rpx;">
+    <view class="title">付费日期</view>
+    <view class="content">{{order.DatePayed}}</view>
+  </view>
+</view>

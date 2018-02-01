@@ -1,0 +1,34 @@
+<!--index.wxml-->
+<swiper indicator-dots="true"
+  autoplay="true" interval="5000" duration="300" circular="true" style="width:100%;height:500rpx;background-color:#e0e0e0" wx:key="banner">
+  <block wx:for="{{imgUrls}}" wx:key="bannerImage">
+    <swiper-item>
+      <image src="{{item}}" style="width:100%;" mode="widthFix"/>
+    </swiper-item>
+  </block>
+</swiper>
+
+<button type="primary" size="default" style="width:auto;margin:30rpx" bindtap="goSearch">现在开始</button>
+<view class="menu"  hover-class='row_hover' bindtap="mySearch">
+  <view>
+    <image src="/imgs/search.png" style="width:80rpx" mode="widthFix"></image>
+  </view>
+  <view style="flex-grow:3;padding-left:15rpx">我的查询</view>
+  <view><image mode='widthFix' src="/imgs/arr.png" style="width:15rpx"/></view>
+</view>
+
+<view class="menu"  hover-class='row_hover' bindtap="myReg">
+  <view>
+    <image src="/imgs/reg.png" style="width:80rpx" mode="widthFix"></image>
+  </view>
+  <view style="flex-grow:3;padding-left:15rpx;">我的注册</view>
+  <view><image mode='widthFix' src="/imgs/arr.png" style="width:15rpx"/></view>
+</view>
+
+<view class="menu"  hover-class='row_hover' bindtap="myPolicy">
+  <view>
+    <image src="/imgs/recommand.png" style="width:80rpx" mode="widthFix"></image>
+  </view> 
+  <view style="flex-grow:3;padding-left:15rpx">我的推荐</view>
+  <view><image mode='widthFix' src="/imgs/arr.png" style="width:15rpx"/></view>
+</view>

@@ -1,0 +1,38 @@
+<view class="grid_title">
+  <view class="title">我的提现记录</view>
+  <view class="content">已提现{{cashMoneyTotal + cashMoneyTotalPending}}元</view>
+</view>
+<!--
+<view class="grid">
+  <view class="title">总收益{{incomeTotal}}元</view>
+  <view class="content">{{incomeTotal}}元</view>
+</view>
+<view class="grid" >
+  <view class="title">已提现</view>
+  <view class="content">{{cashMoneyTotal}}元</view>
+</view>
+
+<view class="grid" >
+  <view class="title">申请提现{{incomeTotal}}元</view>
+  <view class="content">{{cashMoneyTotalPending}}元</view>
+</view>
+<view class="grid_last underline" style="margin-bottom:30rpx;">
+  <view class="title">可提金额</view>
+  <view class="content">{{cashMoneyLeft}}元</view>
+</view>
+ -->
+
+<block wx:for="{{cashlist}}">
+  <view class="grid">
+    <view class="title">提现金额</view>
+    <view class="content">-{{item.CashMoney}}元</view>
+  </view>
+    <view class="grid">
+    <view class="title">申请日期</view>
+    <view class="content">{{item.DateCreated}}</view>
+  </view>
+    <view class="grid_last underline" style="margin-bottom:30rpx">
+    <view class="title">处理状态</view>
+    <view class="content">{{item.IsPayed? "已支付" : "处理中"}}</view>
+  </view>
+</block>

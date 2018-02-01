@@ -1,0 +1,16 @@
+
+.key
+{
+  width:auto;margin:10rpx;padding:10rpx;border-radius: 10rpx;font-size:13pt;background-color:#cecfff;display:flex;align-items: center;
+}
+
+.circle_button
+{
+  display:flex;width:60rpx;height:60rpx;border-radius:50%;color:white;background-color:#c0c0c0;font-size:15pt;align-items:center;justify-content: center;background-color:#fff;
+}
+
+
+page
+{
+  background-color:#fff;
+}

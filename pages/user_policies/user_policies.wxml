@@ -1,0 +1,31 @@
+<view class="grid_title">我创建的优惠码</view>
+<block wx:for="{{user_policies}}">
+  <view data-policyid="{{item.PolicyId}}" class="grid">
+    <view class="title" style="font-size:14pt">{{item.Title}}</view>
+    <view class="content"></view>
+  </view>
+  <view class="grid">
+    <view class="title">优惠规则</view>
+    <view class="content">{{item.Rule}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">购买折扣</view>
+    <view class="content">-{{item.DisMoney}}{{item.IsDisPercent? "%" : "元"}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">推广分成</view>
+    <view class="content">+{{item.ShareMoney}}{{item.IsSharePercent? "%" : "元"}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">覆盖州区</view>
+    <view class="content" style="justify-content:right">覆盖{{item.AreaIds.length}}个州 <button data-areaids="{{item.AreaIds}}" size="mini" type="default" bindtap='goAreas'>详细</button></view>
+  </view>
+  <view class="grid">
+    <view class="title">有效期限</view>
+    <view class="content">{{item.StartDate}} 至 {{item.EndDate}}</view>
+  </view>
+  <view class="grid_last underline" style="margin-bottom:30rpx">
+    <view class="title">推广码</view>
+    <view class="content"><view class="number2">{{item.CheckCode}}</view></view>
+  </view>
+</block>

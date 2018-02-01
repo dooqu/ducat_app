@@ -1,0 +1,217 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 0px;
+  box-sizing: border-box;
+} 
+
+/*底部红色的banner*/
+.bottomBanner
+{
+  display:flex;
+  position:fixed;
+  bottom:0px;
+  left:0px;
+  width:100%;
+  background-color:rgb(194,59,63);
+  height:95rpx;
+  align-items:center;
+  color:white
+}
+
+/*底部红色banner包含的view的通用属性*/
+.bottomBanner view
+{
+  width:0px;
+  text-align:center;
+}
+
+/*##########################通用下拉选择框部分##########################*/
+/* 下拉框一个横排 */
+.selectRow, .selectRowFocus
+{
+  width:auto;
+  margin:100rpx 60rpx;
+  border:1px solid rgb(180,180,180);
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  height:100rpx;
+}
+
+/*select row被选中的高亮 */
+.selectRowFocus
+{
+  border-color:orange
+}
+/* 下拉框的文字部分             */
+.selectRow .selectColumn, .selectRowFocus .selectColumn
+{
+  width:0px;
+  overflow:hidden;
+  flex-grow:6;
+  white-space:nowrap;
+  margin:0rpx 0rpx 0rpx 20rpx;
+  text-overflow:ellipsis;
+  color: rgb(97,97,97);
+}
+
+/*下拉框选中某个项目后，该名字被加粗的效果和纯黑的效果*/
+.selectRow .selectColumn text, .selectRowFocus .selectColumn text
+{
+  font-weight:bold;
+  color:black;
+}
+
+/*下拉框的箭头部分 */
+.selectRow .arrowColumn, .selectRowFocus .arrowColumn
+{
+  width:0px;
+  flex-grow:1;
+  background-color:rgb(180,180,180);
+  margin:0px;
+  color:white;
+  height:100rpx;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ .selectRowFocus .arrowColumn
+ {
+   background-color:orange;
+ }
+
+ /*#################通用选择框结束##########################*/
+ /* ##横条部分 **/
+ .grid_title, .grid, .grid_last
+{
+  background-color:#fff;
+  width:auto;
+  display:flex;
+  align-items:center;
+  height:100rpx;
+  flex-direction: row;
+  position:relative;
+  font-size:13pt;
+}
+
+.grid_title
+{
+  padding: 0rpx 30rpx;
+  margin:30rpx 0rpx;
+  font-size:14pt;  
+}
+
+.grid, .grid_last
+{
+  padding:0rpx 30rpx;
+}
+
+.grid_title .title, .grid_title .content, .grid .title, .grid .content, .grid_last .title, .grid_last .content
+{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  flex-grow: 1;
+  position:relative;
+  height:90rpx;
+  flex-shrink:0;
+}
+.grid .content, .grid_last .content, .grid_title .content
+{
+  justify-content:flex-end;
+  flex-flow:3;
+  color:#808080;
+  flex-shrink : 1;
+  padding-left:20rpx;
+}
+
+.grid_title:before, .grid .title:before, .grid .content:before{
+       content: '';
+       position: absolute;
+       height:1px;
+       width:200%;
+       left:0px;
+       bottom:-1px;
+       border-bottom: 1px solid #c0c0c0;
+       transform-origin: 0 0;
+       transform: scale(0.5, 0.5);
+       box-sizing: border-box;
+}
+
+/************双层录入************/
+.doubleRow
+{
+ width:auto;height:auto;position:relative;margin:40rpx 30rpx;background-color:#fff;
+}
+
+.doubleRow:before{
+       content: '';
+       position: absolute;
+       height:1px;
+       width:200%;
+       left:0px;
+       bottom:-1px;
+       border-bottom: 1px solid #c0c0c0;
+       transform-origin: 0 0;
+       transform: scale(0.5, 0.5);
+       box-sizing: border-box;
+}
+
+.doubleRow .title
+{
+  font-size:13pt;height:50rpx;color:#808080;
+}
+
+.doubleRow .content
+{
+  height:auto;display:flex;flex-direction: row;align-items: center;
+}
+
+.doubleRow .content input
+{
+   width:100%;margin:0rpx ; font-size:13pt;height:60rpx;
+}
+/* *******/
+.number1, .number2 {
+  border-radius: 50%;
+  background-color: #c0c0c0;
+  color: white;
+  padding:15rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.number2 {
+  border-radius: 15rpx;
+  background-color: #c0c0c0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:5rpx 15rpx 5rpx 15rpx;
+}
+
+.underline
+{
+  position:relative;
+}
+
+.underline:before{
+       content: '';
+       position: absolute;
+       height:1px;
+       width:200%;
+       left:0px;
+       bottom:-1px;
+       border-bottom: 1px solid #c0c0c0;
+       transform-origin: 0 0;
+       transform: scale(0.5, 0.5);
+       box-sizing: border-box;
+}

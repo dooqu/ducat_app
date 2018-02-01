@@ -1,0 +1,20 @@
+<view class="grid_title">{{(us.length != 0)? "我的查询数据" : "您还没有查询数据"}}</view>
+<button type="primary" hidden="{{us == null || us.length != 0}}" size="default" style="width:auto;margin:0rpx 30rpx" bindtap="goSearch">现在开始查询</button>
+<block wx:for="{{us}}">
+  <view data-usid="{{item.USId}}" class="block underline" bindtap="goDetail" hover-class='block_hover' hover-start-time='0'>
+    <view style="display:flex;flex-direction:column;flex-grow:10;">
+      <view style="height:100rpx;display:flex;align-items:center;font-size:14pt">
+      {{item.type}}
+      </view>
+      <view style="height:65rpx;display:flex;align-items:center;font-size:12pt;color:#808080">
+      {{item.AreaName}}({{item.AreaNameEN}})
+      </view>
+      <view style="height:65rpx;display:flex;align-items:center;font-size:12pt;color:#808080">
+        总费用：¥{{item.BasePrice + item.GovPrice + (item.IsSpc? item.SpcPrice : 0)}}
+      </view>
+    </view>
+    <view style="flex-grow:2;display:flex;align-items:center;justify-content:flex-end">
+      <image mode='widthFix' src="http://xiaochengxu.ducat.vip/img/arr.png" style="width:15rpx"></image>
+    </view>
+  </view>
+</block>

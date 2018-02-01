@@ -1,0 +1,5 @@
+/* pages/income/income.wxss */
+page
+{
+  background-color:#efefef;
+}

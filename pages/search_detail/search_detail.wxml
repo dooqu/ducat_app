@@ -1,0 +1,38 @@
+<view>
+  <view class="grid_title">查询的详细信息</view>
+  <view class="grid">
+    <view class="title">注册州区：</view>
+    <view class="content">{{ri.AreaName}} ({{ri.AreaNameEN}})</view>
+  </view>
+  <view class="grid">
+    <view class="title">公司类型：</view>
+    <view class="content">{{compType}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">注册时长：</view>
+    <view class="content">{{ri.IsSpc? ri.SpcDays : ri.Days}} （工作日）</view>
+  </view>
+  <view class="grid">
+    <view class="title">基础费用：</view>
+    <view class="content">￥{{ri.BasePrice}}</view>
+  </view>
+  <view class="grid">
+    <view class="title">政府费用：</view>
+    <view class="content">￥{{ri.GovPrice}}</view>
+  </view>
+  <view class="grid" wx:if="{{(ri.IsSpc)}}">
+    <view class="title" >加急费用：</view>
+    <view class="content"><view>￥{{ri.SpcPrice}}</view></view>
+  </view>
+  <view class="grid">
+    <view class="title">是否加急：</view>
+    <view class="content">{{(ri.IsSpc)? "加急" : "不加急"}}</view>
+  </view>
+  <view class="grid_last">
+    <view class="title">费用总计：</view>
+    <view class="content"><view class="number2">￥{{ri.BasePrice + ri.GovPrice + ((ri.IsSpc)? ri.SpcPrice : 0)}}</view></view>
+  </view>
+  <view>
+    <button type="primary" size="default" style="width:auto;margin:30rpx" bindtap="goReg">去注册公司信息</button>
+  </view>
+</view>

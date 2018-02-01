@@ -1,0 +1,23 @@
+<view class="grid_title">
+ <view class="title">我的推广收益记录</view>
+ <view class="content">总收益{{totalIncome}}元</view>
+</view>
+<block wx:for="{{shareOrders}}">
+  <view class="grid">
+    <view class="title underline">
+{{item.UserPolicy.Title}}
+    </view>
+  </view>
+    <view class="grid">
+    <view class="title">推广码值</view>
+    <view class="content"><view class="dotnumber2">{{item.UserPolicy.CheckCode}}</view></view>
+  </view>
+    <view class="grid">
+    <view class="title">推广收入</view>
+    <view class="content">+{{item.OrderShareMoney}}元</view>
+  </view>
+ <view class="grid_last underline" style="margin-bottom:30rpx">
+    <view class="title">支付时间</view>
+    <view class="content">{{item.DatePayed}}</view>
+  </view>
+</block>

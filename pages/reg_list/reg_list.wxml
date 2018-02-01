@@ -1,0 +1,21 @@
+<view class="grid_title">我的注册公司列表</view>
+<view class="grid" hidden="{{ur == null || ur.length != 0}}">您还未有注册公司数据</view>
+<block wx:for="{{ur}}">
+  <view data-regid="{{item.RegId}}" class="block" bindtap="goDetail">
+    <view class="in" style="height:60rpx">
+      <view class="lt"></view>
+      <view class="md" style="font-size:15pt">{{item.CompName1}}</view>
+      <view class="rt"></view>
+    </view>
+    <view class="in" style="color:#808080">
+      <view class="lt">注册类型：</view>
+      <view class="md">{{item.type}}</view>
+      <view class="rt"><image mode='widthFix' src="http://xiaochengxu.ducat.vip/img/arr.png" style="width:15rpx"></image></view>
+    </view>
+    <view class="in" style="color:#808080">
+      <view class="lt">注册费用：</view>
+      <view class="md">￥{{item.BasePrice + item.GovPrice}}</view>
+      <view class="rt"></view>
+    </view>
+  </view>
+</block>
